@@ -14,6 +14,7 @@ const useStyle = makeStyles((theme) => ({
     display: 'flex',
     minHeight: "100vh",
     background: "blue",
+    width: '100%',
 
   },
 }))
