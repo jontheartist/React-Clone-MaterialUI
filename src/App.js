@@ -6,6 +6,8 @@ import store from "./utilis/store";
 import StoreApi from './utilis/storeAPI'
 import InputContainer from './components /Input/InputContainer';
 import { makeStyles } from "@material-ui/core/styles";
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -15,6 +17,7 @@ const useStyle = makeStyles((theme) => ({
     minHeight: "100vh",
     background: "blue",
     width: '100%',
+    overflowY: 'auto',
 
   },
 }))
@@ -85,15 +88,21 @@ export default function App() {
 
   return (
     <StoreApi.Provider value={{ addMoreCard, addMoreList, updateListTitle }}>
-      <div className={classes.root}>
-        {data.listIds.map((listId) => {
-          const list = data.lists[listId];
-          return <List list={list} key={listId} />
-        })}
+      <DragDropContext>
 
 
-        <InputContainer type="list" />
-      </div>
+
+        <div className={classes.root}>
+          {data.listIds.map((listId) => {
+            const list = data.lists[listId];
+            return <List list={list} key={listId} />
+          })}
+
+
+          <InputContainer type="list" />
+        </div>
+      </DragDropContext>
+
     </StoreApi.Provider>
 
   );
