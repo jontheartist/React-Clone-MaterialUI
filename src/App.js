@@ -44,8 +44,46 @@ export default function App() {
     };
     setData(newState);
   }
+
+  const addMoreList = (title) => {
+    const newListId = uuid();
+    const newList = {
+      id: newListId,
+      title,
+      cards: [],
+    };
+
+    const newState = {
+      listIds: [...data.listIds, newListId],
+      lists: {
+        ...data.lists,
+        [newListId]: newList
+      }
+    }
+    setData(newState);
+
+
+  };
+
+  const updateListTitle = (title, listId) => {
+    const list = data.list[listId];
+    list.title = title;
+
+
+    const newState = {
+      ...data,
+      lists: {
+        ...data.lists,
+        [listId]: list,
+      },
+    };
+    setData(newState);
+  };
+
+
+
   return (
-    <StoreApi.Provider value={{ addMoreCard }}>
+    <StoreApi.Provider value={{ addMoreCard, addMoreList, updateListTitle }}>
       <div className={classes.root}>
         {data.listIds.map((listId) => {
           const list = data.lists[listId];
