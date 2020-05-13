@@ -52,9 +52,8 @@ export default function InputCard({ setOpen, listId }) {
                     <InputBase
                         onChange={handleOnChange}
                         multiline
-
                         fullWidth
-                        inpuitProps={{
+                        inputProps={{
                             classes: classes.input,
                         }}
                         value={cardTitle}
